@@ -1,0 +1,68 @@
+{% extends 'masterpage.html' %}
+
+
+{% block content %}
+    
+  
+<div id="content"> 
+  
+    <div id="left">
+     
+     <h1>Üye Ol</h1>  
+    
+       <form method="POST" action="/yeni-uye/">
+           
+         {% csrf_token %}          
+          <div class="input_row"><input type="text" name="username" placeholder="e-posta adresiniz"/></div>
+          <div class="input_row"><input type="text" name="first_name" placeholder="adınız"/></div>
+          <div class="input_row"><input type="text" name="last_name" placeholder="soyadınız"/></div>
+          <div class="input_row"><input type="password" name="password1" placeholder="şifre"/></div>
+          <div class="input_row"><input type="password" name="password2" placeholder="şifre tekrar"/></div>
+          <div class="input_row"><input type="submit" name="submit" value="kaydet"/></div>
+           
+       </form>
+    
+    {% if exsist_message %}
+        
+        {{exsist_message}}
+        
+    {% endif %}
+    
+    
+
+    
+    {% if email_validation %}
+        
+        {{email_validation}}
+        
+    {% endif %}   
+    
+    
+    </div> <!--left-->
+    
+    
+    <div id="right">
+     
+     <h1>Üye Girişi</h1>  
+    
+       <form method="POST" action="/uye-giris/">
+           
+         {% csrf_token %}          
+          <div class="input_row"><input type="text" name="username" placeholder="e-posta adresiniz"/></div>
+          <div class="input_row"><input type="password" name="password" placeholder="şifre"/></div>
+          <div class="input_row"><input type="submit" name="submit" value="giriş"/></div>
+           
+       </form>
+       {% if hata %}
+       {{hata}}
+    {% endif %}
+        
+        
+    </div> <!--left--> 
+    
+    
+    
+    
+</div> <!--content-->   
+    
+{% endblock content %}
